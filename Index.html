@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hgnice Hack - Sazzad Islam</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a0e17 0%, #1a243b 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+            background-color: #131a2a;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid #2a3655;
+        }
+        
+        .logo-section {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #2a3655;
+        }
+        
+        .logo {
+            color: #4a9eff;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(74, 158, 255, 0.3);
+        }
+        
+        .subtitle {
+            color: #8a9bb8;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #8a9bb8;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        input {
+            width: 100%;
+            padding: 14px 15px;
+            background-color: #1a243b;
+            border: 1px solid #2a3655;
+            border-radius: 6px;
+            color: #ffffff;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #4a9eff;
+            box-shadow: 0 0 0 2px rgba(74, 158, 255, 0.2);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(to right, #4a9eff, #3a8eef);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .login-btn:hover {
+            background: linear-gradient(to right, #3a8eef, #2a7edf);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 158, 255, 0.4);
+        }
+        
+        .options {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        
+        .remember {
+            display: flex;
+            align-items: center;
+        }
+        
+        .remember input {
+            width: auto;
+            margin-right: 8px;
+        }
+        
+        .forgot-password {
+            color: #4a9eff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .forgot-password:hover {
+            color: #3a8eef;
+            text-decoration: underline;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #2a3655;
+            font-size: 13px;
+            color: #8a9bb8;
+            line-height: 1.5;
+        }
+        
+        .error-message {
+            color: #ff6b6b;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+            display: none;
+        }
+        
+        .success-message {
+            color: #4cd964;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+            display: none;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid #4a9eff;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .server-info {
+            background-color: #1a243b;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 3px solid #4a9eff;
+        }
+        
+        .server-info p {
+            margin: 5px 0;
+            font-size: 13px;
+        }
+        
+        .time-left {
+            color: #4cd964;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo-section">
+            <div class="logo">HGNICE HACK BY SAZZAD</div>
+        </div>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="Hgnice" id="username" placeholder="Enter your username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="Sazzad" id="password" placeholder="Enter your password" required>
+            </div>
+            
+            <button type="submit" class="login-btn">LOGIN</button>
+            
+            <div class="error-message" id="errorMessage">Invalid username or password</div>
+            <div class="success-message" id="successMessage">Login successful! Redirecting...</div>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Connecting to server...</p>
+            </div>
+            
+            <div class="options">
+                <div class="remember">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+            </div>
+        </form>
+        
+        <div class="footer">
+        <p>© Sazzad Islam - All Rights Reserved</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            const loading = document.getElementById('loading');
+            
+            // Hide messages
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+            loading.style.display = 'block';
+            
+            // Simple validation - in a real app, this would be done on the server
+            setTimeout(function() {
+                loading.style.display = 'none';
+                
+                // For demo purposes, accept any non-empty username and password
+                if (username && password) {
+                    successMessage.style.display = 'block';
+                    
+                    // Store login status in localStorage
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('username', username);
+                    
+                    // Redirect to index.html after 1.5 seconds
+                    setTimeout(function() {
+                        window.location.href = 'main.html';
+                    }, 1500);
+                } else {
+                    errorMessage.style.display = 'block';
+                }
+            }, 1500);
+        });
+        
+        // Check if user is already logged in
+        window.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('isLoggedIn') === 'true') {
+                // If already logged in, redirect to index.html
+                window.location.href = 'main.html';
+            }
+        });
+    </script>
+</body>
+</html>
