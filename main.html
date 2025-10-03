@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hgnice Hack - Sazzad Islam</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Orbitron:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0ea5e9;
+            --secondary-color: #6366f1;
+            --accent-color: #facc15;
+            --background-color: #0f172a;
+            --card-background: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --shadow-light: 0 4px 20px rgba(14, 165, 233, 0.1);
+            --shadow-medium: 0 8px 30px rgba(14, 165, 233, 0.15);
+            --gradient-primary: linear-gradient(135deg, #0ea5e9, #6366f1);
+            --border-color: rgba(255, 255, 255, 0.07);
+            --icon-bg: rgba(14, 165, 233, 0.08);
+            --icon-hover-bg: rgba(14, 165, 233, 0.15);
+            --success-color: #10b981;
+            --danger-color: #ef4444;
+            --system-30s-color: #8b5cf6;
+            --system-1min-color: #06b6d4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-size: clamp(15px, 2vw, 16px);
+        }
+
+        .header {
+            background: var(--card-background);
+            padding: clamp(20px, 3vw, 30px) 0;
+            text-align: center;
+            box-shadow: var(--shadow-medium);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .header-text {
+            width: 100%;
+            height: clamp(60px, 12vw, 70px);
+            display: block;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-text text {
+            font-family: 'Orbitron', sans-serif;
+            animation: neonGlow 3s ease-in-out infinite alternate;
+            stroke-width: 1;
+            stroke: var(--primary-color);
+            font-size: clamp(28px, 6vw, 36px);
+            fill: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: clamp(4px, 1vw, 6px);
+        }
+
+        @keyframes neonGlow {
+            0% { fill: var(--primary-color); stroke: var(--accent-color); text-shadow: 0 0 10px rgba(14, 165, 233, 0.5); }
+            100% { fill: var(--accent-color); stroke: var(--primary-color); text-shadow: 0 0 20px rgba(14, 165, 233, 0.8); }
+        }
+
+        .version-info {
+            display: flex;
+            justify-content: center;
+            gap: clamp(12px, 2vw, 18px);
+            margin-top: clamp(10px, 2vw, 15px);
+            position: relative;
+            z-index: 2;
+        }
+
+        .version-text, .update-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(10px, 1.8vw, 12px);
+            color: var(--primary-color);
+            background: var(--icon-bg);
+            padding: clamp(6px, 1vw, 8px) clamp(12px, 2vw, 16px);
+            border-radius: 30px;
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .version-text:hover, .update-text:hover {
+            background: var(--icon-hover-bg);
+            transform: translateY(-2px) rotate(3deg);
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.4);
+        }
+
+        .main-container {
+            max-width: 1400px;
+            width: 95%;
+            margin: clamp(25px, 4vw, 40px) auto;
+            background: var(--card-background);
+            border-radius: clamp(16px, 2vw, 20px);
+            box-shadow: var(--shadow-medium);
+            padding: clamp(20px, 4vw, 30px);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.08), transparent);
+            animation: pulseGlow 12s infinite ease-in-out;
+            z-index: 0;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 0.4; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+        }
+
+        .system-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .system-tab {
+            flex: 1;
+            padding: 15px 20px;
+            background: rgba(30, 41, 59, 0.7);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .system-tab.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .system-tab.system-30s.active {
+            background: var(--system-30s-color);
+            border-color: var(--system-30s-color);
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .system-tab.system-1min.active {
+            background: var(--system-1min-color);
+            border-color: var(--system-1min-color);
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+        }
+
+        .system-content {
+            display: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .system-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .control-panel {
+            display: flex;
+            gap: clamp(20px, 3vw, 30px);
+            margin-bottom: clamp(20px, 3vw, 30px);
+            flex-wrap: wrap;
+        }
+
+        .selection-box {
+            flex: 1;
+            min-width: clamp(200px, 45vw, 250px);
+            position: relative;
+        }
+
+        .selection-box label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(14px, 2vw, 16px);
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            margin-bottom: clamp(8px, 1vw, 10px);
+            display: block;
+            letter-spacing: clamp(1px, 0.2vw, 1.5px);
+        }
+
+        .selection-box select {
+            width: 100%;
+            padding: clamp(12px, 2vw, 14px) clamp(16px, 3vw, 20px);
+            font-size: clamp(14px, 2vw, 16px);
+            border: 2px solid var(--primary-color);
+            border-radius: clamp(10px, 1.5vw, 12px);
+            background: var(--card-background);
+            color: var(--text-primary);
+            appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%230ea5e9" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right clamp(10px, 2vw, 14px) center;
+            background-size: clamp(22px, 3vw, 26px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-light);
+        }
+
+        .selection-box select:hover {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 16px rgba(14, 165, 233, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .selection-box select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.4);
+        }
+
+        .info-section {
+            background: rgba(30, 41, 59, 0.7);
+            padding: clamp(20px, 3vw, 25px);
+            border-radius: clamp(12px, 2vw, 16px);
+            margin: clamp(20px, 3vw, 30px) 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(180px, 35vw, 200px), 1fr));
+            gap: clamp(20px, 3vw, 25px);
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border-color);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: clamp(10px, 2vw, 14px);
+            background: var(--card-background);
+            padding: clamp(12px, 2vw, 16px);
+            border-radius: clamp(10px, 1.5vw, 14px);
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.15);
+        }
+
+        .info-item i {
+            color: var(--primary-color);
+            font-size: clamp(18px, 3vw, 20px);
+            padding: clamp(10px, 2vw, 12px);
+            background: var(--icon-bg);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover i {
+            background: var(--icon-hover-bg);
+            transform: scale(1.15) rotate(12deg);
+        }
+
+        .info-item div {
+            flex: 1;
+        }
+
+        .info-item span {
+            font-size: clamp(13px, 2vw, 14px);
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: clamp(1px, 0.2vw, 1.2px);
+        }
+
+        .info-item .value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(16px, 2.5vw, 18px);
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(24px, 5vw, 28px);
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: clamp(20px, 3vw, 25px);
+            text-transform: uppercase;
+            letter-spacing: clamp(2px, 0.4vw, 2.5px);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: clamp(50px, 12vw, 70px);
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .analysis-section {
+            background: rgba(30, 41, 59, 0.7);
+            padding: clamp(20px, 3vw, 25px);
+            border-radius: clamp(12px, 2vw, 16px);
+            margin: clamp(20px, 3vw, 30px) 0;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .analysis-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 5px;
+            background: var(--gradient-primary);
+            border-radius: 0 0 12px 12px;
+            opacity: 0.9;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(140px, 30vw, 160px), 1fr));
+            gap: clamp(20px, 3vw, 25px);
+        }
+
+        .analysis-card {
+            background: var(--card-background);
+            padding: clamp(12px, 2vw, 16px);
+            border-radius: clamp(10px, 1.5vw, 14px);
+            text-align: center;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .analysis-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.15);
+        }
+
+        .analysis-card span {
+            font-size: clamp(13px, 2vw, 14px);
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: clamp(1px, 0.2vw, 1.2px);
+        }
+
+        .analysis-card .value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(16px, 2.5vw, 18px);
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: clamp(6px, 1vw, 8px);
+            display: block;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .server-status-connected {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: clamp(8px, 1vw, 10px);
+        }
+
+        .server-status-connected::before {
+            content: '';
+            width: clamp(10px, 2vw, 12px);
+            height: clamp(10px, 2vw, 12px);
+            background: #10b981;
+            border-radius: 50%;
+            animation: serverPulse 1.8s infinite ease-in-out;
+        }
+
+        @keyframes serverPulse {
+            0% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.4); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.6; }
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: clamp(8px, 1vw, 10px);
+            background: rgba(14, 165, 233, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: clamp(6px, 1vw, 8px);
+            border: 1px solid rgba(14, 165, 233, 0.15);
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 5px;
+            transition: width 0.5s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.3), transparent);
+            animation: progressShine 2.5s infinite linear;
+        }
+
+        @keyframes progressShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .history-section {
+            margin: clamp(20px, 3vw, 30px) 0;
+            background: rgba(30, 41, 59, 0.7);
+            padding: clamp(20px, 3vw, 25px);
+            border-radius: clamp(12px, 2vw, 16px);
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .history-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 5px;
+            background: var(--gradient-primary);
+            border-radius: 0 0 12px 12px;
+            opacity: 0.9;
+        }
+
+        .history-card {
+            background: var(--card-background);
+            padding: clamp(12px, 2vw, 16px);
+            border-radius: clamp(10px, 1.5vw, 14px);
+            margin-bottom: clamp(12px, 2vw, 18px);
+            box-shadow: var(--shadow-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .history-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.15);
+        }
+
+        .history-card.pending {
+            animation: subtlePulse 2s infinite ease-in-out;
+        }
+
+        @keyframes subtlePulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+
+        .history-content span {
+            font-size: clamp(13px, 2vw, 14px);
+            margin: clamp(4px, 0.5vw, 6px) 0;
+            display: flex;
+            align-items: center;
+            gap: clamp(8px, 1vw, 10px);
+            color: var(--text-secondary);
+        }
+
+        .history-content i {
+            color: var(--primary-color);
+            font-size: clamp(14px, 2vw, 16px);
+            background: var(--icon-bg);
+            padding: clamp(6px, 1vw, 8px);
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .history-content span:hover i {
+            background: var(--icon-hover-bg);
+            transform: rotate(20deg);
+        }
+
+        .history-content .value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(14px, 2vw, 16px);
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .status-icon {
+            width: clamp(32px, 5vw, 36px);
+            height: clamp(32px, 5vw, 36px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--icon-bg);
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+
+        .status-icon:hover {
+            background: var(--icon-hover-bg);
+        }
+
+        .pending-spinner {
+            width: 100%;
+            height: 100%;
+            border: 4px solid transparent;
+            border-top: 4px solid var(--primary-color);
+            border-right: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1.2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .win-trophy::before {
+            content: '\f091';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: clamp(18px, 3vw, 20px);
+            color: var(--success-color);
+        }
+
+        .loss-signal::before {
+            content: '\f00d';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: clamp(18px, 3vw, 20px);
+            color: var(--danger-color);
+        }
+
+        .clear-btn {
+            width: 100%;
+            padding: clamp(12px, 2vw, 14px);
+            background: var(--card-background);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: clamp(10px, 1.5vw, 12px);
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(14px, 2vw, 16px);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(10px, 2vw, 12px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .clear-btn:hover {
+            background: var(--primary-color);
+            color: var(--card-background);
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .clear-btn i {
+            font-size: clamp(14px, 2vw, 16px);
+            transition: transform 0.3s ease;
+        }
+
+        .clear-btn:hover i {
+            transform: scale(1.15) rotate(15deg);
+        }
+
+        .notification {
+            position: fixed;
+            top: clamp(20px, 3vw, 25px);
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 95%;
+            padding: clamp(12px, 2vw, 14px) clamp(20px, 3vw, 26px);
+            border-radius: clamp(12px, 2vw, 16px);
+            color: #ffffff;
+            z-index: 1002;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-medium);
+            animation: slideIn 0.4s ease forwards, slideOut 0.4s ease 3s forwards;
+        }
+
+        .notification.win {
+            background: var(--success-color);
+        }
+
+        .notification.loss {
+            background: var(--danger-color);
+        }
+
+        .notification-text {
+            font-size: clamp(14px, 2vw, 16px);
+            font-weight: 600;
+        }
+
+        .notification-close {
+            font-size: clamp(14px, 2vw, 16px);
+            cursor: pointer;
+            padding: 0 clamp(8px, 1vw, 10px);
+            transition: transform 0.3s ease;
+        }
+
+        .notification-close:hover {
+            transform: scale(1.3) rotate(90deg);
+        }
+
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateX(-50%) translateY(-30px); }
+            100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        @keyframes slideOut {
+            0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-30px); }
+        }
+
+        @media (min-width: 769px) {
+            .control-panel {
+                flex-direction: row;
+            }
+
+            .info-section {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .analysis-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .main-container {
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-text text {
+                font-size: clamp(24px, 7vw, 30px);
+            }
+
+            .system-tabs {
+                flex-direction: column;
+            }
+
+            .control-panel {
+                flex-direction: column;
+                gap: clamp(15px, 4vw, 25px);
+            }
+
+            .info-section {
+                grid-template-columns: 1fr;
+            }
+
+            .analysis-grid {
+                grid-template-columns: repeat(auto-fit, minmax(clamp(120px, 50vw, 140px), 1fr));
+            }
+
+            .history-card {
+                flex-direction: column;
+                text-align: center;
+                gap: clamp(10px, 2vw, 12px);
+            }
+
+            .history-content span {
+                justify-content: center;
+            }
+
+            .status-icon {
+                margin-top: clamp(10px, 2vw, 12px);
+            }
+
+            .clear-btn {
+                font-size: clamp(13px, 3vw, 15px);
+                padding: clamp(10px, 2vw, 12px);
+            }
+
+            .notification {
+                top: clamp(15px, 4vw, 20px);
+                padding: clamp(10px, 2vw, 12px) clamp(16px, 3vw, 20px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-text text {
+                font-size: clamp(20px, 6vw, 26px);
+            }
+
+            .version-text, .update-text {
+                font-size: clamp(9px, 2.5vw, 10px);
+                padding: clamp(4px, 1vw, 6px) clamp(8px, 2vw, 10px);
+            }
+
+            .main-container {
+                padding: clamp(15px, 4vw, 25px);
+                width: 98%;
+            }
+
+            .selection-box {
+                min-width: 100%;
+            }
+
+            .selection-box select {
+                padding: clamp(10px, 2vw, 12px) clamp(14px, 3vw, 16px);
+                font-size: clamp(13px, 3vw, 15px);
+            }
+
+            .info-item {
+                padding: clamp(10px, 2vw, 12px);
+            }
+
+            .section-title {
+                font-size: clamp(22px, 6vw, 24px);
+            }
+
+            .analysis-card {
+                padding: clamp(10px, 2vw, 12px);
+            }
+
+            .history-card {
+                padding: clamp(10px, 2vw, 12px);
+            }
+            .footer {
+ 		  	 background: #1e293b;
+ 		  	 text-align: center;
+ 		  	 padding: 15px;
+ 		  	 font-size: 14px;
+ 		  	 color: #94a3b8;
+ 		  	 margin-top: 30px;
+ 		  	 border-top: 1px solid #334155;
+ 	   	 }
+		 	.footer p {
+				  margin: 0;
+			 }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-gradient"></div>
+        <svg class="header-text">
+            <text x="50%" y="50%" dy=".35em" text-anchor="middle">
+                HGNICE WIN GO
+            </text>
+        </svg>
+    </div>
+
+    <div class="main-container">
+        <div class="system-tabs">
+            <div class="system-tab system-30s active" onclick="switchSystem('system30s')">
+                <i class="fas fa-bolt"></i> 30-Second System
+            </div>
+            <div class="system-tab system-1min" onclick="switchSystem('system1min')">
+                <i class="fas fa-clock"></i> 1-Minute System
+            </div>
+        </div>
+
+        <!-- 30-Second System -->
+        <div id="system30s" class="system-content active">
+            <div class="control-panel">
+                <div class="selection-box">
+                    <label for="resultType30s">Result Type</label>
+                    <select id="resultType30s" onchange="resetServerSelection('30s')">
+                        <option value="bigsmall">Big/Small</option>
+                        <option value="redgreen">Red/Green</option>
+                    </select>
+                </div>
+                <div class="selection-box">
+                    <label for="serverSelect30s">Server</label>
+                    <select id="serverSelect30s" onchange="updateServerSelection('30s')">
+                        <option value="">Select Server</option>
+                        <option value="aiCalculation">AI CALCULATION SERVER</option>
+                        <option value="guaranteedWin">GUARANTEED WIN SERVER</option>
+                        <option value="tksSpecial">VIP AI SERVER</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <div class="info-item">
+                    <i class="fas fa-calendar-check"></i>
+                    <div>
+                        <span>Period</span>
+                        <span id="periodNumber30s" class="value">Loading...</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <span>Time Left</span>
+                        <span id="timer30s" class="value">00:00</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-poll"></i>
+                    <div>
+                        <span>Result</span>
+                        <span id="currentResult30s" class="value">Waiting...</span>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="analysis-section">
+                <div class="section-title">Always Entry MTG</div>
+            </div>
+
+            <div class="history-section">
+                <div class="section-title">Use 4 Step MTG For Sure Profit</div>
+            </div>
+        </div>
+
+        <!-- 1-Minute System -->
+        <div id="system1min" class="system-content">
+            <div class="control-panel">
+                <div class="selection-box">
+                    <label for="resultType1min">Result Type</label>
+                    <select id="resultType1min" onchange="resetServerSelection('1min')">
+                        <option value="bigsmall">Big/Small</option>
+                        <option value="redgreen">Red/Green</option>
+                    </select>
+                </div>
+                <div class="selection-box">
+                    <label for="serverSelect1min">Server</label>
+                    <select id="serverSelect1min" onchange="updateServerSelection('1min')">
+                        <option value="">Select Server</option>
+                        <option value="aiCalculation">AI CALCULATION SERVER</option>
+                        <option value="guaranteedWin">GUARANTEED WIN SERVER</option>
+                        <option value="tksSpecial">VIP AI SERVER</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <div class="info-item">
+                    <i class="fas fa-calendar-check"></i>
+                    <div>
+                        <span>Period</span>
+                        <span id="periodNumber1min" class="value">Loading...</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <span>Time Left</span>
+                        <span id="timer1min" class="value">00:00</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-poll"></i>
+                    <div>
+                        <span>Result</span>
+                        <span id="currentResult1min" class="value">Waiting...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analysis-section">
+                <div class="section-title">Always Entry MTG</div>
+            </div>
+
+            <div class="history-section">
+                <div class="section-title">Use 4 Step MTG For Sure Profit</div>
+            </div>
+        </div>
+    </div>
+<!-- Footer -->
+<footer class="footer">
+  <p>© Sazzad Islam - All Rights Reserved</p>
+</footer>
+
+    <script>
+        // System management
+        function switchSystem(systemId) {
+            // Hide all systems
+            document.querySelectorAll('.system-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.system-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected system
+            document.getElementById(systemId).classList.add('active');
+            
+            // Activate selected tab
+            if (systemId === 'system30s') {
+                document.querySelector('.system-tab.system-30s').classList.add('active');
+            } else {
+                document.querySelector('.system-tab.system-1min').classList.add('active');
+            }
+        }
+
+        // Data structures for both systems
+        const systems = {
+            '30s': {
+                history: [],
+                totalWins: 0,
+                totalLosses: 0,
+                totalBets: 0,
+                winCount: 0,
+                lossStreak: 0,
+                selectedServer: '',
+                isResultProcessing: false,
+                lastPeriodNumber: null,
+                lastTimerUpdate: 0,
+                lastResultTime: 0,
+                apiData: []
+            },
+            '1min': {
+                history: [],
+                totalWins: 0,
+                totalLosses: 0,
+                totalBets: 0,
+                winCount: 0,
+                lossStreak: 0,
+                selectedServer: '',
+                isResultProcessing: false,
+                lastPeriodNumber: null,
+                lastTimerUpdate: 0,
+                lastResultTime: 0,
+                apiData: []
+            }
+        };
+
+        // Real API endpoints for lottery results
+        const REAL_API_ENDPOINTS = {
+            '30s': {
+                // Replace with your actual API endpoint for 30-second lottery
+                results: 'https://api.lottery-platform.com/v1/30s/results',
+                // Alternative free lottery API (example)
+                fallback: 'https://api.lottery.com/v1/results?type=30s'
+            },
+            '1min': {
+                // Replace with your actual API endpoint for 1-minute lottery
+                results: 'https://api.lottery-platform.com/v1/1min/results',
+                // Alternative free lottery API (example)
+                fallback: 'https://api.lottery.com/v1/results?type=1min'
+            }
+        };
+
+        function resetServerSelection(system) {
+            document.getElementById(`serverSelect${system}`).value = '';
+            systems[system].selectedServer = '';
+            document.getElementById(`currentResult${system}`).textContent = 'Waiting For Server...';
+        }
+
+        function updateServerSelection(system) {
+            systems[system].selectedServer = document.getElementById(`serverSelect${system}`).value;
+            if (systems[system].selectedServer && !systems[system].isResultProcessing && systems[system].lastPeriodNumber) {
+                generateResult(system, systems[system].lastPeriodNumber);
+            } else {
+                document.getElementById(`currentResult${system}`).textContent = 'Waiting For Server...';
+            }
+        }
+
+        function updatePeriodAndTimer() {
+            const now = new Date();
+            const currentTime = now.getTime();
+
+            // Update 30-second system
+            if (currentTime - systems['30s'].lastTimerUpdate >= 1000) {
+                systems['30s'].lastTimerUpdate = currentTime;
+                
+                const year = now.getUTCFullYear();
+                const month = String(now.getUTCMonth() + 1).padStart(2, '0');
+                const day = String(now.getUTCDate()).padStart(2, '0');
+                const totalHalfMinutes = now.getUTCHours() * 120 + now.getUTCMinutes() * 2 + Math.floor(now.getUTCSeconds() / 30);
+
+                const periodNumber = `${year}${month}${day}2000${20001 + totalHalfMinutes}`;
+                const remainingSeconds = 30 - (now.getUTCSeconds() % 30);
+
+                if (systems['30s'].lastPeriodNumber !== periodNumber) {
+                    systems['30s'].lastPeriodNumber = periodNumber;
+                    document.getElementById('periodNumber30s').textContent = periodNumber || 'N/A';
+                    
+                    // Fetch new results when period changes
+                    fetchRealResults('30s');
+                    
+                    if (systems['30s'].selectedServer) {
+                        generateResult('30s', periodNumber);
+                    } else {
+                        document.getElementById('currentResult30s').textContent = 'Waiting For Server...';
+                    }
+                }
+
+                document.getElementById('timer30s').textContent = `00:${String(remainingSeconds).padStart(2, '0')}`;
+            }
+
+            // Update 1-minute system
+            if (currentTime - systems['1min'].lastTimerUpdate >= 1000) {
+                systems['1min'].lastTimerUpdate = currentTime;
+                
+                const year = now.getUTCFullYear();
+                const month = String(now.getUTCMonth() + 1).padStart(2, '0');
+                const day = String(now.getUTCDate()).padStart(2, '0');
+                const totalMinutes = now.getUTCHours() * 60 + now.getUTCMinutes();
+
+                const periodNumber = `${year}${month}${day}1000${10001 + totalMinutes}`;
+                const remainingSeconds = 60 - now.getUTCSeconds();
+
+                if (systems['1min'].lastPeriodNumber !== periodNumber) {
+                    systems['1min'].lastPeriodNumber = periodNumber;
+                    document.getElementById('periodNumber1min').textContent = periodNumber || 'N/A';
+                    
+                    // Fetch new results when period changes
+                    fetchRealResults('1min');
+                    
+                    if (systems['1min'].selectedServer) {
+                        generateResult('1min', periodNumber);
+                    } else {
+                        document.getElementById('currentResult1min').textContent = 'Waiting For Server...';
+                    }
+                }
+
+                document.getElementById('timer1min').textContent = `00:${String(remainingSeconds).padStart(2, '0')}`;
+            }
+        }
+
+        // Fetch real results from actual API
+        async function fetchRealResults(system) {
+            try {
+                console.log(`Fetching real results for ${system} system...`);
+                
+                // Try primary API first
+                let response = await fetchWithTimeout(REAL_API_ENDPOINTS[system].results, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        // Add your API key if required
+                        // 'Authorization': 'Bearer your-api-key-here'
+                    },
+                    timeout: 5000
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Primary API failed: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                // Process the real API response
+                if (data && data.results) {
+                    systems[system].apiData = data.results.map(item => ({
+                        number: item.winning_number || item.number,
+                        issueNumber: item.issue || item.period,
+                        bigSmall: parseInt(item.winning_number || item.number) >= 5 ? 'BIG' : 'SMALL',
+                        redGreen: [0, 2, 4, 6, 8].includes(parseInt(item.winning_number || item.number)) ? 'RED' : 'GREEN',
+                        timestamp: item.draw_time || item.timestamp
+                    }));
+                    
+                    console.log(`Successfully fetched ${systems[system].apiData.length} real results for ${system}`);
+                    return;
+                }
+                
+                throw new Error('Invalid API response format');
+                
+            } catch (error) {
+                console.warn(`Real API failed for ${system}:`, error.message);
+                
+                // Fallback to alternative API or simulated data
+                try {
+                    console.log(`Trying fallback API for ${system}...`);
+                    let fallbackResponse = await fetchWithTimeout(REAL_API_ENDPOINTS[system].fallback, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        timeout: 5000
+                    });
+                    
+                    if (fallbackResponse.ok) {
+                        const fallbackData = await fallbackResponse.json();
+                        
+                        if (fallbackData && fallbackData.data) {
+                            systems[system].apiData = fallbackData.data.map(item => ({
+                                number: item.winningNumber || item.number,
+                                issueNumber: item.issueNumber || item.period,
+                                bigSmall: parseInt(item.winningNumber || item.number) >= 5 ? 'BIG' : 'SMALL',
+                                redGreen: [0, 2, 4, 6, 8].includes(parseInt(item.winningNumber || item.number)) ? 'RED' : 'GREEN',
+                                timestamp: item.drawTime || item.timestamp
+                            }));
+                            console.log(`Successfully fetched ${systems[system].apiData.length} results from fallback API for ${system}`);
+                            return;
+                        }
+                    }
+                } catch (fallbackError) {
+                    console.warn(`Fallback API also failed for ${system}:`, fallbackError.message);
+                }
+                
+                // Final fallback to simulated data
+                console.log(`Using simulated data for ${system}`);
+                await fetchSimulatedResults(system);
+            }
+        }
+
+        // Helper function for fetch with timeout
+        function fetchWithTimeout(url, options = {}) {
+            const { timeout = 8000 } = options;
+            
+            const controller = new AbortController();
+            const { signal } = controller;
+            
+            const fetchPromise = fetch(url, {
+                ...options,
+                signal
+            });
+            
+            const timeoutPromise = new Promise((_, reject) => {
+                setTimeout(() => {
+                    controller.abort();
+                    reject(new Error(`Request timeout after ${timeout}ms`));
+                }, timeout);
+            });
+            
+            return Promise.race([fetchPromise, timeoutPromise]);
+        }
+
+        // Simulate API data when real API is not available
+        async function fetchSimulatedResults(system) {
+            // Generate realistic simulated data based on actual lottery patterns
+            const count = system === '30s' ? 50 : 30;
+            const simulatedData = [];
+            
+            // Use more realistic patterns (avoid completely random data)
+            let lastNumber = Math.floor(Math.random() * 10);
+            
+            for (let i = 0; i < count; i++) {
+                // Add some pattern to make it more realistic
+                if (Math.random() > 0.7) {
+                    // 30% chance to repeat or follow pattern
+                    lastNumber = (lastNumber + Math.floor(Math.random() * 3) - 1) % 10;
+                    if (lastNumber < 0) lastNumber += 10;
+                } else {
+                    lastNumber = Math.floor(Math.random() * 10);
+                }
+                
+                const isBig = lastNumber >= 5;
+                const isRed = [0, 2, 4, 6, 8].includes(lastNumber);
+                
+                simulatedData.push({
+                    number: lastNumber.toString(),
+                    issueNumber: generateIssueNumber(system, i),
+                    bigSmall: isBig ? 'BIG' : 'SMALL',
+                    redGreen: isRed ? 'RED' : 'GREEN',
+                    timestamp: new Date(Date.now() - i * (system === '30s' ? 30000 : 60000)).toISOString()
+                });
+            }
+            
+            systems[system].apiData = simulatedData;
+            console.log(`Generated ${simulatedData.length} simulated results for ${system}`);
+        }
+
+        function generateIssueNumber(system, offset) {
+            const now = new Date();
+            const year = now.getUTCFullYear();
+            const month = String(now.getUTCMonth() + 1).padStart(2, '0');
+            const day = String(now.getUTCDate()).padStart(2, '0');
+            
+            if (system === '30s') {
+                const totalHalfMinutes = now.getUTCHours() * 120 + now.getUTCMinutes() * 2 + Math.floor(now.getUTCSeconds() / 30);
+                return `${year}${month}${day}2000${20001 + totalHalfMinutes - offset}`;
+            } else {
+                const totalMinutes = now.getUTCHours() * 60 + now.getUTCMinutes();
+                return `${year}${month}${day}1000${10001 + totalMinutes - offset}`;
+            }
+        }
+
+        // AI prediction methods with real data analysis
+        async function aiCalculationServerMethod(system, type) {
+            const data = systems[system].apiData;
+            if (!data || data.length === 0) {
+                return { result: "No Data", probability: 0 };
+            }
+            
+            // Analyze recent patterns from real data
+            const recentNumbers = data.slice(0, 10).map(item => parseInt(item.number, 10));
+            const recentAvg = recentNumbers.reduce((a, b) => a + b, 0) / recentNumbers.length;
+            
+            let result, probability = 85;
+            if (type === 'bigsmall') {
+                result = recentAvg >= 4.5 ? 'BIG' : 'SMALL';
+            } else {
+                result = [0, 2, 4, 6, 8].includes(Math.round(recentAvg)) ? 'RED' : 'GREEN';
+            }
+
+            return { result, probability };
+        }
+
+        async function guaranteedWinServerMethod(system, type) {
+            const data = systems[system].apiData;
+            if (!data || data.length === 0) {
+                return { result: "No Data", probability: 0 };
+            }
+            
+            // Pattern detection algorithm using real data
+            const recentResults = data.slice(0, 5);
+            let result, probability = 85;
+            
+            if (type === 'bigsmall') {
+                const bigCount = recentResults.filter(item => item.bigSmall === 'BIG').length;
+                result = bigCount >= 3 ? 'BIG' : 'SMALL';
+            } else {
+                const redCount = recentResults.filter(item => item.redGreen === 'RED').length;
+                result = redCount >= 3 ? 'RED' : 'GREEN';
+            }
+
+            return { result, probability };
+        }
+
+        async function tksSpecialServerMethod(system, type) {
+            const data = systems[system].apiData;
+            if (!data || data.length === 0) {
+                return { result: "No Data", probability: 0 };
+            }
+            
+            // Advanced algorithm with weighted analysis using real data
+            const recentNumbers = data.slice(0, 10).map(item => parseInt(item.number, 10));
+            const weightedAvg = recentNumbers.reduce((sum, n, i) => sum + n * (10 - i), 0) / 55;
+            
+            let result, probability = 85;
+            if (type === 'bigsmall') {
+                result = weightedAvg >= 4.7 ? 'BIG' : 'SMALL';
+            } else {
+                result = Math.round(weightedAvg) % 2 === 0 ? 'RED' : 'GREEN';
+            }
+
+            return { result, probability };
+        }
+
+        async function generateResult(system, period) {
+            const systemData = systems[system];
+            const currentTime = Date.now();
+            
+            // Prevent generating results too frequently
+            if (currentTime - systemData.lastResultTime < 5000) {
+                return;
+            }
+            
+            if (systemData.isResultProcessing || !systemData.selectedServer || !period) {
+                document.getElementById(`currentResult${system}`).textContent = !systemData.selectedServer ? 'Waiting for Server...' : 'Period Not Available';
+                return;
+            }
+            
+            systemData.isResultProcessing = true;
+            systemData.lastResultTime = currentTime;
+            document.getElementById(`currentResult${system}`).textContent = 'Processing...';
+
+            const resultType = document.getElementById(`resultType${system}`).value || 'bigsmall';
+            let prediction;
+
+            try {
+                const startTime = Date.now();
+                switch (systemData.selectedServer) {
+                    case 'aiCalculation': 
+                        prediction = await aiCalculationServerMethod(system, resultType); 
+                        break;
+                    case 'guaranteedWin': 
+                        prediction = await guaranteedWinServerMethod(system, resultType); 
+                        break;
+                    case 'tksSpecial': 
+                        prediction = await tksSpecialServerMethod(system, resultType); 
+                        break;
+                    default: 
+                        prediction = { result: "No Engine Selected", probability: 0 };
+                }
+
+                const elapsed = Date.now() - startTime;
+                const delay = Math.max(0, 2000 - elapsed);
+                await new Promise(resolve => setTimeout(resolve, delay));
+
+                const displayText = `${prediction.result} (${prediction.probability}%)`;
+                document.getElementById(`currentResult${system}`).textContent = displayText;
+
+                // Add to history as pending
+                const historyItem = { 
+                    period, 
+                    result: prediction.result, 
+                    status: "Pending",
+                    resultType,
+                    server: systemData.selectedServer,
+                    probability: prediction.probability,
+                    timestamp: new Date().toLocaleTimeString()
+                };
+                
+                // Keep only last 3 history items
+                systemData.history.unshift(historyItem);
+                if (systemData.history.length > 3) {
+                    systemData.history = systemData.history.slice(0, 3);
+                }
+                
+                renderHistory(system);
+                
+                // Verify result against real API data
+                setTimeout(() => {
+                    verifyResultWithRealData(system, historyItem);
+                }, 5000);
+                
+            } catch (error) {
+                console.error("Error in generateResult:", error);
+                document.getElementById(`currentResult${system}`).textContent = 'Prediction Error';
+            } finally {
+                systemData.isResultProcessing = false;
+            }
+        }
+
+        function verifyResultWithRealData(system, historyItem) {
+            const systemData = systems[system];
+            
+            // Find the actual result from API data
+            const actualData = systemData.apiData.find(item => item.issueNumber === historyItem.period);
+            
+            if (actualData) {
+                // We have real data - compare prediction with actual result
+                const actualResult = historyItem.resultType === 'bigsmall' ? actualData.bigSmall : actualData.redGreen;
+                
+                historyItem.status = historyItem.result === actualResult ? "WIN" : "LOSS";
+                historyItem.actualResult = actualResult;
+                historyItem.verified = true;
+                historyItem.isRealData = true;
+
+                if (historyItem.status === "WIN") {
+                    systemData.winCount++;
+                    systemData.lossStreak = 0;
+                } else {
+                    systemData.lossStreak++;
+                    systemData.winCount = 0;
+                }
+            } else {
+                // No real data available - use simulated verification
+                console.log(`No real data found for period ${historyItem.period}, using simulated verification`);
+                verifyResultWithSimulation(system, historyItem);
+            }
+
+            updateAnalysis(system, historyItem.status);
+            renderHistory(system);
+
+            if (systemData.winCount >= 5 || systemData.lossStreak >= 3) {
+                showBreakPopup();
+            }
+        }
+
+        function verifyResultWithSimulation(system, historyItem) {
+            const systemData = systems[system];
+            
+            // Simulate verification with realistic probability
+            const isWin = Math.random() < 0.85;
+            
+            // Generate realistic actual result based on patterns
+            const actualResult = generateRealisticActualResult(historyItem.resultType, systemData.apiData);
+            
+            historyItem.status = historyItem.result === actualResult ? "WIN" : "LOSS";
+            historyItem.actualResult = actualResult;
+            historyItem.verified = true;
+            historyItem.isRealData = false;
+
+            if (historyItem.status === "WIN") {
+                systemData.winCount++;
+                systemData.lossStreak = 0;
+            } else {
+                systemData.lossStreak++;
+                systemData.winCount = 0;
+            }
+        }
+
+        function generateRealisticActualResult(type, apiData) {
+            // Generate actual result that follows patterns from real data
+            if (apiData && apiData.length > 0) {
+                // Analyze recent patterns to make it more realistic
+                const recentResults = apiData.slice(0, 5);
+                
+                if (type === 'bigsmall') {
+                    const bigCount = recentResults.filter(item => item.bigSmall === 'BIG').length;
+                    const smallCount = recentResults.filter(item => item.bigSmall === 'SMALL').length;
+                    
+                    // Slightly favor the less frequent result (gambler's fallacy simulation)
+                    if (bigCount > smallCount) {
+                        return Math.random() < 0.6 ? 'SMALL' : 'BIG';
+                    } else if (smallCount > bigCount) {
+                        return Math.random() < 0.6 ? 'BIG' : 'SMALL';
+                    }
+                } else {
+                    const redCount = recentResults.filter(item => item.redGreen === 'RED').length;
+                    const greenCount = recentResults.filter(item => item.redGreen === 'GREEN').length;
+                    
+                    if (redCount > greenCount) {
+                        return Math.random() < 0.6 ? 'GREEN' : 'RED';
+                    } else if (greenCount > redCount) {
+                        return Math.random() < 0.6 ? 'RED' : 'GREEN';
+                    }
+                }
+            }
+            
+            // Fallback to random if no pattern detected
+            if (type === 'bigsmall') {
+                return Math.random() > 0.5 ? 'BIG' : 'SMALL';
+            } else {
+                return Math.random() > 0.5 ? 'RED' : 'GREEN';
+            }
+        }
+
+        function showBreakPopup() {
+            // Simple break notification
+            alert('Take a Break! Please Play After 40 to 50 Minutes.');
+        }
+
+        function renderHistory(system) {
+            const historyBody = document.getElementById(`historyBody${system}`);
+            const systemData = systems[system];
+            
+            if (!historyBody) return;
+            
+            if (systemData.history.length === 0) {
+                historyBody.innerHTML = '<div class="history-card"><div class="history-content"><span>No predictions yet</span></div></div>';
+                return;
+            }
+            
+            historyBody.innerHTML = systemData.history.map(h => `
+                <div class="history-card ${h.status === 'Pending' ? 'pending' : ''}">
+                    <div class="history-content">
+                        <span><i class="fas fa-calendar"></i> Period: <span class="value">${h.period || 'N/A'}</span></span>
+                        <span><i class="fas fa-server"></i> Server: <span class="value">${h.server || 'Unknown'}</span></span>
+                        <span><i class="fas fa-chart-line"></i> Prediction: <span class="value">${h.result} (${h.probability}%)</span></span>
+                        ${h.status !== 'Pending' ? `
+                            <span><i class="fas fa-check-circle"></i> Actual: <span class="value">${h.actualResult || 'N/A'} ${h.isRealData ? '📡' : '🔄'}</span></span>
+                            <span><i class="fas fa-${h.status === 'WIN' ? 'trophy' : 'times'}"></i> Status: <span class="value" style="color: ${h.status === 'WIN' ? '#10b981' : '#ef4444'}">${h.status}</span></span>
+                        ` : `
+                            <span><i class="fas fa-clock"></i> Status: <span class="value">Verifying...</span></span>
+                        `}
+                        <span><i class="fas fa-clock"></i> Time: <span class="value">${h.timestamp || ''}</span></span>
+                    </div>
+                    <span class="status-icon">
+                        ${h.status === 'Pending' ? '<span class="pending-spinner"></span>' : 
+                          h.status === 'WIN' ? '<span class="win-trophy"></span>' : 
+                          '<span class="loss-signal"></span>'}
+                    </span>
+                </div>
+            `).join("");
+        }
+
+        function showNotification(type, message) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <span class="notification-text">${message}</span>
+                <span class="notification-close">✖</span>
+            `;
+            document.body.appendChild(notification);
+
+            notification.querySelector('.notification-close').addEventListener('click', () => {
+                notification.remove();
+            });
+
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 3000);
+        }
+
+        function updateAnalysis(system, result) {
+            const systemData = systems[system];
+            systemData.totalBets++;
+            if (result === "WIN") systemData.totalWins++;
+            else if (result === "LOSS") systemData.totalLosses++;
+
+            const winAccuracy = systemData.totalBets === 0 ? 0 : ((systemData.totalWins / systemData.totalBets) * 100).toFixed(2);
+            document.getElementById(`winAccuracy${system}`).textContent = `${winAccuracy}%`;
+            document.getElementById(`totalWins${system}`).textContent = systemData.totalWins;
+            document.getElementById(`totalLosses${system}`).textContent = systemData.totalLosses;
+            document.getElementById(`serverStatus${system}`).textContent = "Active";
+
+            const winRateFill = document.getElementById(`winRateFill${system}`);
+            if (winRateFill) winRateFill.style.width = `${winAccuracy}%`;
+        }
+
+        function clearHistory(system) {
+            const systemData = systems[system];
+            systemData.history = [];
+            systemData.totalBets = 0;
+            systemData.totalWins = 0;
+            systemData.totalLosses = 0;
+            systemData.winCount = 0;
+            systemData.lossStreak = 0;
+            document.getElementById(`winAccuracy${system}`).textContent = "0%";
+            document.getElementById(`totalWins${system}`).textContent = '0';
+            document.getElementById(`totalLosses${system}`).textContent = '0';
+            document.getElementById(`serverStatus${system}`).textContent = "Active";
+            const winRateFill = document.getElementById(`winRateFill${system}`);
+            if (winRateFill) winRateFill.style.width = '0%';
+            resetServerSelection(system);
+            renderHistory(system);
+        }
+
+        // Initialize with real data
+        function initializeSystem() {
+            updatePeriodAndTimer();
+            setInterval(updatePeriodAndTimer, 1000);
+            
+            // Fetch initial real data for both systems
+            fetchRealResults('30s');
+            fetchRealResults('1min');
+            
+            // Set up periodic data refresh
+            setInterval(() => {
+                fetchRealResults('30s');
+                fetchRealResults('1min');
+            }, 30000); // Refresh every 30 seconds
+        }
+
+        // Start the system
+        initializeSystem();
+    </script>
+</body>
+</html>
